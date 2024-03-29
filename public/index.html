@@ -6,50 +6,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Turnstile Form Demo - CF Pages</title>
   <link rel="stylesheet" href="index.css">
+  <script src="https://challengs.cloudflare.com/turnstile/v0/api.js?onload=turnstileCb" defer></script>
 </head>
 
 <body>
-  <form method="POST" action="/submit">
-    <div class="input">
-      <label for="name">Full Name</label>
-      <input id="name" name="name" type="text" />
-    </div>
+  <main>
+    <h1>Demo: Form Submission</h1>
+    <blockquote>
+      <p>This is a demonstration of Cloudflare Pages with Turnstile.</p>
+      <p>Pages deployed a <code>/public</code> directory, containing a HTML document (this webpage) and a
+        <code>/functions</code> directory, which contains the Cloudflare Workers code for the API endpoint this
+        <code>&lt;form&gt;</code> references.
+      </p>
+      <p><b>NOTE:</b> On form submission, the API endpoint responds with a JSON representation of the data. There is no
+        JavaScript running in this example.</p>
+    </blockquote>
 
-    <div class="input">
-      <label for="referrers">How did you hear about us?</label>
-      <select id="referrers" name="referrers">
-        <option hidden disabled selected value></option>
-        <option value="Facebook">Facebook</option>
-        <option value="Twitter">Twitter</option>
-        <option value="Google">Google</option>
-        <option value="Friends">Friends</option>
-      </select>
-    </div>
+    <form method="POST" action="/submit">
+      <div class="input">
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" />
+      </div>
 
-    <div class="checklist">
-      <label>What is your favorite movies?</label>
-      <ul>
-        <li>
-          <input id="m1" name="movies" type="checkbox" value="Forrest Gump" />
-          <label for="m1">Forrest Gump</label>
-        </li>
-        <li>
-          <input id="m2" name="movies" type="checkbox" value="Shawshank Redemption" />
-          <label for="m2">Shawshank Redemption</label>
-        </li>
-        <li>
-          <input id="m3" name="movies" type="checkbox" value="The Dark Knight" />
-          <label for="m3">The Dark Knight</label>
-        </li>
-        <li>
-          <input id="m4" name="movies" type="checkbox" value="Caddyshack" />
-          <label for="m4">Caddyshack</label>
-        </li>
-      </ul>
-    </div>
+      <div class="input">
+        <label for="referrers">How did you hear about us?</label>
+        <select id="referrers" name="referrers">
+          <option hidden disabled selected value></option>
+          <option value="Facebook">Facebook</option>
+          <option value="Twitter">Twitter</option>
+          <option value="Google">Google</option>
+          <option value="Friends">Friends</option>
+        </select>
+      </div>
 
-    <button type="submit">Submit</button>
-  </form>
+      <div class="checklist">
+        <label>What is your favorite movies?</label>
+        <ul>
+          <li>
+            <input id="m1" name="movies" type="checkbox" value="Forrest Gump" />
+            <label for="m1">Forrest Gump</label>
+          </li>
+          <li>
+            <input id="m2" name="movies" type="checkbox" value="Shawshank Redemption" />
+            <label for="m2">Shawshank Redemption</label>
+          </li>
+          <li>
+            <input id="m3" name="movies" type="checkbox" value="The Dark Knight" />
+            <label for="m3">The Dark Knight</label>
+          </li>
+          <li>
+            <input id="m4" name="movies" type="checkbox" value="Caddyshack" />
+            <label for="m4">Caddyshack</label>
+          </li>
+        </ul>
+      </div>
+      <div id="turnstile-widget" style="padding-top: 20px;"></div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+  <script>
+    function _turnstileCb() {
+      console.debug('_turnstileCB called');
+
+      turnstile.render('#turnstile-widget', {
+        sitekey: '0x4AAAAAAAV553-2JWCo6v0g';
+        theme: 'dark',
+      });
+    }
+  </script>
 </body>
+
 
 </html>
