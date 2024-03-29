@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turnstile Form Demo - CF Pages</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <form method="POST" action="/submit">
+    <div class="input">
+      <label for="name">Full Name</label>
+      <input id="name" name="name" type="text" />
+    </div>
+
+    <div class="input">
+      <label for="referrers">How did you hear about us?</label>
+      <select id="referrers" name="referrers">
+        <option hidden disabled selected value></option>
+        <option value="Facebook">Facebook</option>
+        <option value="Twitter">Twitter</option>
+        <option value="Google">Google</option>
+        <option value="Friends">Friends</option>
+      </select>
+    </div>
+
+    <div class="checklist">
+      <label>What is your favorite movies?</label>
+      <ul>
+        <li>
+          <input id="m1" name="movies" type="checkbox" value="Forrest Gump" />
+          <label for="m1">Forrest Gump</label>
+        </li>
+        <li>
+          <input id="m2" name="movies" type="checkbox" value="Shawshank Redemption" />
+          <label for="m2">Shawshank Redemption</label>
+        </li>
+        <li>
+          <input id="m3" name="movies" type="checkbox" value="The Dark Knight" />
+          <label for="m3">The Dark Knight</label>
+        </li>
+        <li>
+          <input id="m4" name="movies" type="checkbox" value="Caddyshack" />
+          <label for="m4">Caddyshack</label>
+        </li>
+      </ul>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+
+</html>
